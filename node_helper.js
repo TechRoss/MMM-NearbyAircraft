@@ -54,7 +54,7 @@ module.exports = NodeHelper.create({
                 try {
                     const json = JSON.parse(data);
                     const aircraft = (json.ac || [])
-                        .filter(ac => ac.flight && ac.flight.trim() !== "")
+                        .filter(ac => (ac.flight && ac.flight.trim() !== "") || ac.military === true || (ac.dbFlags & 1) === 1)
                         .map(ac => this.mapAircraft(ac, lat, lon))
                         .sort((a, b) => {
                             if (a.military !== b.military) return a.military ? -1 : 1;
@@ -79,7 +79,7 @@ module.exports = NodeHelper.create({
 
         return {
             icao:        ac.hex || "",
-            callsign:    (ac.flight || "").trim(),
+            callsign:    (ac.flight || "").trim() || ac.r || ac.hex || "",
             type:        ac.t || "",
             description: ac.desc || "",
             registration: ac.r || "",
