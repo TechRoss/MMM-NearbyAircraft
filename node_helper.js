@@ -1,6 +1,34 @@
 const NodeHelper = require("node_helper");
 const https = require("https");
 
+const AIRLINE_MAP = {
+    // UK & Ireland
+    BAW: "British Airways",    EZY: "easyJet",           RYR: "Ryanair",
+    TOM: "TUI Airways",        TCX: "Thomas Cook",        EXS: "Jet2",
+    VIR: "Virgin Atlantic",    LOG: "Loganair",           FLB: "Flybe",
+    BEE: "Flybe",              ENT: "Eastern Airways",    SHT: "British Airways Shuttle",
+    AEU: "Aer Lingus",         EIN: "Aer Lingus",         RUK: "Ryanair UK",
+    // Europe
+    DLH: "Lufthansa",          AFL: "Aeroflot",           AFR: "Air France",
+    KLM: "KLM",                IBE: "Iberia",             VLG: "Vueling",
+    AZA: "ITA Airways",        AUA: "Austrian Airlines",  SAS: "Scandinavian Airlines",
+    FIN: "Finnair",            TAP: "TAP Air Portugal",   THY: "Turkish Airlines",
+    SWR: "Swiss",              BEL: "Brussels Airlines",  CSA: "Czech Airlines",
+    WZZ: "Wizz Air",           NOZ: "Norwegian",          NAX: "Norwegian",
+    // North America
+    AAL: "American Airlines",  DAL: "Delta Air Lines",    UAL: "United Airlines",
+    SWA: "Southwest Airlines", JBU: "JetBlue",            ASA: "Alaska Airlines",
+    WJA: "WestJet",            ACA: "Air Canada",
+    // Middle East & Asia
+    UAE: "Emirates",           ETD: "Etihad Airways",     QTR: "Qatar Airways",
+    SVA: "Saudia",             THM: "Air Arabia",         FDB: "flydubai",
+    SIA: "Singapore Airlines", CPA: "Cathay Pacific",     JAL: "Japan Airlines",
+    ANA: "All Nippon Airways",
+    // Cargo
+    UPS: "UPS Airlines",       FDX: "FedEx",              DHL: "DHL Air",
+    BCS: "European Air Transport",
+};
+
 module.exports = NodeHelper.create({
 
     start: function () {
@@ -55,7 +83,7 @@ module.exports = NodeHelper.create({
             type:        ac.t || "",
             description: ac.desc || "",
             registration: ac.r || "",
-            operator:    ac.operator || "",
+            operator:    this.resolveOperator(ac),
             altitude:    alt,
             groundSpeed: Math.round(ac.gs || 0),
             verticalRate: ac.baro_rate || 0,
@@ -64,6 +92,16 @@ module.exports = NodeHelper.create({
             distanceNm:  this.haversineNm(userLat, userLon, ac.lat || userLat, ac.lon || userLon),
             onGround:    ac.alt_baro === "ground"
         };
+    },
+
+    resolveOperator: function (ac) {
+        if (ac.operator) return ac.operator;
+        const callsign = (ac.flight || "").trim();
+        if (callsign.length >= 3) {
+            const prefix = callsign.substring(0, 3).toUpperCase();
+            if (AIRLINE_MAP[prefix]) return AIRLINE_MAP[prefix];
+        }
+        return "";
     },
 
     haversineNm: function (lat1, lon1, lat2, lon2) {
