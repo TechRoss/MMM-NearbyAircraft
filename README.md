@@ -31,7 +31,7 @@ Navigate to your MagicMirror `modules` directory and clone the repository:
 
 ```bash
 cd ~/MagicMirror/modules
-git clone https://github.com/rossbateman/MMM-NearbyAircraft.git
+git clone https://github.com/TechRoss/MMM-NearbyAircraft.git
 ```
 
 No additional dependencies — the module uses only Node.js built-ins.
