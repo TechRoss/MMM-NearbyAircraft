@@ -1,0 +1,9 @@
+{
+    "name": "MMM-NearbyAircraft",
+    "version": "1.0.0",
+    "description": "MagicMirror² module showing nearby aircraft via ADSB.lol",
+    "main": "MMM-NearbyAircraft.js",
+    "author": "Ross Bateman",
+    "license": "MIT",
+    "dependencies": {}
+}

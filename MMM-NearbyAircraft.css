@@ -1,0 +1,137 @@
+.mmm-nearby-aircraft {
+    min-width: 340px;
+}
+
+/* Status / empty / error */
+.mna-status {
+    color: #8B949E;
+    padding: 6px 0;
+}
+
+.mna-error {
+    color: #F85149;
+}
+
+/* Table */
+.mna-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mna-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.mna-row-military {
+    border-bottom: 1px solid rgba(248, 81, 73, 0.2);
+}
+
+.mna-row:last-child {
+    border-bottom: none;
+}
+
+.mna-row td {
+    padding: 5px 4px;
+    vertical-align: middle;
+}
+
+/* Altitude colour bar */
+.mna-bar-cell {
+    width: 4px;
+    padding: 0 !important;
+}
+
+.mna-alt-bar {
+    width: 3px;
+    height: 32px;
+    border-radius: 2px;
+    margin-right: 6px;
+}
+
+/* Heading icon */
+.mna-heading-cell {
+    width: 26px;
+    text-align: center;
+    padding-left: 6px !important;
+    padding-right: 4px !important;
+}
+
+.mna-heading-icon {
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.mna-heading-icon-military {
+    color: #F85149;
+}
+
+.mna-mil-badge {
+    font-size: 0.7em;
+    color: #F85149;
+    border: 1px solid #F85149;
+    border-radius: 2px;
+    padding: 0 3px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+}
+
+/* Callsign */
+.mna-callsign {
+    white-space: nowrap;
+    padding-right: 10px !important;
+    min-width: 80px;
+}
+
+/* Type + operator */
+.mna-info {
+    flex: 1;
+}
+
+.mna-type {
+    font-size: 0.85em;
+}
+
+.mna-operator {
+    font-size: 0.8em;
+    color: #8B949E;
+}
+
+/* Altitude */
+.mna-altitude {
+    white-space: nowrap;
+    text-align: right;
+    padding-left: 8px !important;
+}
+
+.mna-arrow {
+    opacity: 0.8;
+}
+
+/* Speed */
+.mna-speed {
+    font-size: 0.85em;
+    color: #8B949E;
+    text-align: right;
+    white-space: nowrap;
+    padding-left: 8px !important;
+}
+
+/* Distance */
+.mna-distance {
+    font-size: 0.85em;
+    color: #8B949E;
+    text-align: right;
+    white-space: nowrap;
+    padding-left: 8px !important;
+}
+
+/* Footer */
+.mna-footer {
+    font-size: 0.75em;
+    color: #8B949E;
+    text-align: right;
+    margin-top: 6px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
